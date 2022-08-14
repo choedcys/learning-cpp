@@ -1,14 +1,10 @@
-//
-//  main.cpp
-//  learning cpp
-//
-//  Created by 조영승 on 2022/08/14.
-//
-
+#include"header.h""
 #include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+int main() {
+    macStart a;
+    a.prn();
+    a.modify();
+    a.prn();
     return 0;
 }
