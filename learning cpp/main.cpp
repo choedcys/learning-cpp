@@ -1,12 +1,13 @@
-#include"header.h""
-#include <iostream>
+#include<iostream>
+#include"header.h"
 using namespace std;
-int main() {
-    Point p1(100, 200);
-    Point p2(200, 300);
-    Point p3;
-    cout<<"p1 = "; p1.display(); cout<<"p2 = "; p2.display();
-    p3 = p1 + p2; cout<<"p1 + p2 = "; p3.display();
-    p3 = p1 - p2; cout<<"p1 - p2 = "; p3.display();
+
+int main(){
+    SymbolTable table;
+    table.add("house", 100);
+    table.add("mouse", 200);
+    table.add("korea", 300);
+    table.del("mouse");
+    cout<< table["house"] << endl;
     return 0;
 }

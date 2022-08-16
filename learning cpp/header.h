@@ -1,9 +1,20 @@
-class Point{
-    int x, y;
+#include<iostream>
+using namespace std;
+class block{
+    string name;
+    int data;
 public:
-    Point();
-    Point(int temp1, int temp2);
-    void display();
-    Point operator+(Point temp);
-    Point operator-(Point temp);
+    void setname(string temp);
+    void setdata(int temp);
+    string getname();
+    int getdata();
+};
+
+class SymbolTable{
+    block arr[20];
+    int cnt = -1;
+public:
+    void add(string temp1, int temp2);
+    void del(string temp);
+    int operator[](string temp);
 };

@@ -1,21 +1,43 @@
-#include"header.h"
 #include<iostream>
+#include"header.h"
 using namespace std;
 
-Point::Point(){}
-Point::Point(int temp1, int temp2):x(temp1), y(temp2){}
-void Point::display(){
-    cout<<"("<<x<<","<<y<<")"<<endl;
+void block::setname(string temp){
+    name = temp;
 }
-Point Point::operator+(Point temp){
-    Point res;
-    res.x = this->x + temp.x;
-    res.y = this->y + temp.y;
-    return res;
+void block::setdata(int temp){
+    data = temp;
 }
-Point Point::operator-(Point temp){
-    Point res;
-    res.x = this->x - temp.x;
-    res.y = this->y - temp.y;
-    return res;
+string block::getname(){
+    return name;
 }
+int block::getdata(){
+    return data;
+}
+
+
+void SymbolTable::add(string temp1, int temp2){
+    cnt++;
+    arr[cnt].setdata(temp2);
+    arr[cnt].setname(temp1);
+}
+void SymbolTable::del(string temp){
+    for(int i = 0 ; i < cnt+1 ; i++){
+        if(arr[i].getname()==temp){
+            for(int k = i ; k < cnt+1 ; k++){
+                arr[i] = arr[i+1];
+            }
+            cnt--;
+            break;
+        }
+    }
+}
+int SymbolTable::operator[](string temp){
+    for(int i = 0 ; i < cnt+1 ; i++){
+        if(arr[i].getname()==temp){
+            return arr[i].getdata();
+        }
+    }
+    return 0;
+}
+
