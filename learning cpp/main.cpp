@@ -2,12 +2,10 @@
 #include"header.h"
 using namespace std;
 
-int main(){
-    SymbolTable table;
-    table.add("house", 100);
-    table.add("mouse", 200);
-    table.add("korea", 300);
-    table.del("mouse");
-    cout<< table["house"] << endl;
+int main() {
+    Employee e("홍길동", 100);
+    int salary = (int)e;
+    e.display();
+    cout<<"int salary = "<<salary<<endl;
     return 0;
 }
