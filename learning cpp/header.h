@@ -1,7 +1,9 @@
-class macStart{
-    int data;
+class Point{
+    int x, y;
 public:
-    macStart();
-    void prn();
-    void modify();
+    Point();
+    Point(int temp1, int temp2);
+    void display();
+    Point operator+(Point temp);
+    Point operator-(Point temp);
 };

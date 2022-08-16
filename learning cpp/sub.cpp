@@ -2,13 +2,20 @@
 #include<iostream>
 using namespace std;
 
-macStart::macStart():data(10){}
-
-void macStart::prn(){
-    cout<<data<<"출력"<<endl;
+Point::Point(){}
+Point::Point(int temp1, int temp2):x(temp1), y(temp2){}
+void Point::display(){
+    cout<<"("<<x<<","<<y<<")"<<endl;
 }
-
-void macStart::modify(){
-    cout<<"입력: ";
-    cin>>data;
+Point Point::operator+(Point temp){
+    Point res;
+    res.x = this->x + temp.x;
+    res.y = this->y + temp.y;
+    return res;
+}
+Point Point::operator-(Point temp){
+    Point res;
+    res.x = this->x - temp.x;
+    res.y = this->y - temp.y;
+    return res;
 }
