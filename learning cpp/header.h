@@ -1,11 +1,18 @@
 #include<iostream>
 using namespace std;
 
-class Employee{
-    string name;
-    int money;
+class String{
+    int len;
+    char * query;
 public:
-    Employee(string temp1, int temp2);
-    void display();
-    operator int();
+    String();
+    String(char* temp);
+    String(String& temp);
+    ~String();
+    String operator=(String temp);
+    String operator+(String temp);
+    void operator+=(String temp);
+    bool operator ==(String temp);
+    friend ostream& operator<<(ostream& os, String& temp);
+    friend istream& operator>>(istream& is, String& temp);
 };
