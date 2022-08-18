@@ -3,7 +3,6 @@
 using namespace std;
 
 int main(){
-    String X("abce");
-    String Y = X + "avcd";
-    cout<<Y;
+    String X("I love You");
+    X.rotate();
 }
