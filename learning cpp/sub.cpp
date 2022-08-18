@@ -18,17 +18,17 @@ String::String(char* temp){
 }
 
 String::~String(){
+    cout<<"파괴자 처리 중..."<<endl;
     delete[]query;
+    cout<<"처리 완료!"<<endl;
 }
 
-void String:: rotate(){
+void String:: reverse(){
     char temp;
-    for(int row = 0 ; row < len ; row++){
-        temp = query[0];
-        for(int col = 0 ; col < len-1 ; col++){
-            query[col] = query[col+1];
-        }
-        query[len-1] = temp;
-        cout<<query<<endl;
+    for(int row = 0 ; row < len/2 ; row++){
+        temp = query[row];
+        query[row] = query[len-row-1];
+        query[len-row-1] = temp;
     }
+    cout<<query;
 }

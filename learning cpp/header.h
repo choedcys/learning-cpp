@@ -8,5 +8,5 @@ public:
     String();
     String(char* temp);
     ~String();
-    void rotate();
+    void reverse();
 };
