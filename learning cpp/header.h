@@ -4,9 +4,12 @@ using namespace std;
 class String{
     int len;
     char * query;
+    char * tmp;
 public:
     String();
     String(char* temp);
     ~String();
-    void reverse();
+    void plus();
+    int symbol();
+    int Intlize(char* temp1, int temp2);
 };
