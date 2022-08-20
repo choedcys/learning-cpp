@@ -4,12 +4,9 @@ using namespace std;
 class String{
     int len;
     char * query;
-    char * tmp;
 public:
     String();
-    String(char* temp);
+    bool setQ(char* temp);
     ~String();
-    void plus();
-    int symbol();
-    int Intlize(char* temp1, int temp2);
+    void alter();
 };
