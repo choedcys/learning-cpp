@@ -4,9 +4,12 @@ using namespace std;
 class String{
     int len;
     char * query;
+    int arr[26] = {0};
 public:
     String();
-    bool setQ(char* temp);
+    void setQ();
     ~String();
-    void alter();
+    void getnum();
+    void draw();
+    void star(int temp);
 };
