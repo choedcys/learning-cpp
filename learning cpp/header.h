@@ -4,12 +4,23 @@ using namespace std;
 class String{
     int len;
     char * query;
-    int arr[26] = {0};
 public:
     String();
-    void setQ();
+    void setQ(char* temp1, int temp2);
     ~String();
-    void getnum();
-    void draw();
-    void star(int temp);
+    int getlen();
+    int comp(char temp);
+};
+
+class Ctrl{
+    String quiz;
+    char* answer;
+    int chance = 0;
+    char wrong[26];
+    char input;
+public:
+    Ctrl();
+    Ctrl(char* temp);
+    void play();
+    bool end();
 };

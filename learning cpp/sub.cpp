@@ -5,23 +5,13 @@
 using namespace std;
 
 String::String(){}
-void String::setQ(){
-    char temp[500];
-    cout<<"문자열 입력=>"<<endl;
-    cin.getline(temp,500);
-    int i = 0;
-    while(1){
-        if(temp[i] == NULL)
-            break;
-        i++;
-    }
-    len = i;
+void String::setQ(char* temp1, int temp2){
+    len = temp2;
     query = new char[len+1];
     for(int i = 0 ; i < len ; i++){
-        query[i]= temp[i];
+        query[i]= temp1[i];
     }
     query[len] = NULL;
-    cout<<query<<endl;
 }
 
 String::~String(){
@@ -30,31 +20,69 @@ String::~String(){
     cout<<"파괴자 처리 완료!"<<endl;
 }
 
-void String::getnum(){
-    int num = 0;
+int String::getlen(){
+    return len;
+}
+
+int String::comp(char temp){
     for(int i = 0 ; i < len ; i++){
-        if(int(query[i]) >= 65 && int(query[i]) <= 90 || int(query[i]) >= 97 && int(query[i]) <= 122){
-            num++;
-            if(int(query[i]) >= 65 && int(query[i]) <= 90){
-                arr[query[i]-65]++;
+        if(temp == query[i]){
+            return i;
+        }
+    }
+    return -1;
+}
+bool Ctrl::end(){
+    for(int i = 0 ; i < quiz.getlen() ; i++){
+        if(answer[i] == '_')
+            return false;
+    }
+    return true;
+}
+Ctrl::Ctrl(){}
+Ctrl::Ctrl(char* temp){
+    int len = 0;
+    while(temp[len] != NULL){
+        temp[len++];
+    }
+    quiz.setQ(temp, len);
+    answer = new char[len+1];
+    for(int i = 0 ; i < len ; i++){
+        answer[i]= '_';
+    }
+    answer[len] = NULL;
+    chance = len;
+    cout<<"영어 단어 게임을 하시겠습니까?<y.n>"<<endl;
+    cout<<"수수께끼 단어를 추측해 보십시오."<<endl;
+    cout<<len<<"개의 문자로 이루어져 있습니다."<<endl;
+    cout<<"한번에 한 문자씩 추측하십시오."<<endl;
+}
+void Ctrl::play(){
+    while(1){
+        cout<<"목숨 : "<<chance<<"개"<<endl;
+        cout<<"추측하는 단어 : "<<answer<<endl;
+        cout<<"지금까지 틀린 문자들: "<<wrong<<endl;
+        cout<<"문자를 추측하십시오 :";
+        cin>>input;
+        int point = quiz.comp(input);
+        if(point == -1){
+            if(chance == 0){
+                cout<<"목숨 없음, 게임 패배"<<endl;
+                break;
             }
-            else{
-                arr[query[i]-97]++;
+            cout<<"틀렸군"<<endl;
+            wrong[strlen(wrong)] = input;
+            wrong[strlen(wrong)+1] = NULL;
+            chance--;
+        }
+        else{
+            cout<<"맞았군"<<endl;
+            answer[point] = input;
+            cout<<answer<<endl;
+            if(end() == true){
+                cout<<"게임승리!"<<endl;
+                break;
             }
         }
     }
-    cout<<"총 알파벳 수: "<<num<<endl;
-}
-
-void String::draw(){
-    for(int i = 97 ; i < 123 ; i++){
-        cout<<char(i)<<"("<<arr[i-97]<<")  :  ";
-        star(arr[i-97]);
-    }
-}
-void String::star(int temp){
-    for(int i = 0 ; i < temp ; i++){
-        cout<<"*";
-    }
-    cout<<endl;
 }

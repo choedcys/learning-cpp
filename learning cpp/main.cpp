@@ -3,9 +3,7 @@
 using namespace std;
 
 int main(){
-    String histgr;
-    histgr.setQ();
-    histgr.getnum();
-    histgr.draw();
+    Ctrl game("Active");
+    game.play();
 }
 
