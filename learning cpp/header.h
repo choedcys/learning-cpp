@@ -9,7 +9,7 @@ public:
     void setQ(char* temp1, int temp2);
     ~String();
     int getlen();
-    int comp(char temp);
+    char getQ(int temp);
 };
 
 class Ctrl{
@@ -21,6 +21,7 @@ class Ctrl{
 public:
     Ctrl();
     Ctrl(char* temp);
+    int comp(char temp);
     void play();
     bool end();
 };

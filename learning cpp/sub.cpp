@@ -1,6 +1,4 @@
 #include<iostream>
-#include<cstdlib>
-#include<ctime>
 #include"header.h"
 using namespace std;
 
@@ -23,15 +21,11 @@ String::~String(){
 int String::getlen(){
     return len;
 }
-
-int String::comp(char temp){
-    for(int i = 0 ; i < len ; i++){
-        if(temp == query[i]){
-            return i;
-        }
-    }
-    return -1;
+char String::getQ(int temp){
+    return query[temp];
 }
+
+
 bool Ctrl::end(){
     for(int i = 0 ; i < quiz.getlen() ; i++){
         if(answer[i] == '_')
@@ -40,6 +34,14 @@ bool Ctrl::end(){
     return true;
 }
 Ctrl::Ctrl(){}
+int Ctrl::comp(char temp){
+    for(int i = 0 ; i < quiz.getlen() ; i++){
+        if(temp == quiz.getQ(i) && answer[i] == '_'){
+            return i;
+        }
+    }
+    return -1;
+}
 Ctrl::Ctrl(char* temp){
     int len = 0;
     while(temp[len] != NULL){
@@ -64,7 +66,7 @@ void Ctrl::play(){
         cout<<"지금까지 틀린 문자들: "<<wrong<<endl;
         cout<<"문자를 추측하십시오 :";
         cin>>input;
-        int point = quiz.comp(input);
+        int point = comp(input);
         if(point == -1){
             if(chance == 0){
                 cout<<"목숨 없음, 게임 패배"<<endl;

@@ -3,7 +3,7 @@
 using namespace std;
 
 int main(){
-    Ctrl game("Active");
+    Ctrl game("CokeCola");
     game.play();
 }
 
