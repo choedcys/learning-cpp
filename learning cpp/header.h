@@ -6,22 +6,7 @@ class String{
     char * query;
 public:
     String();
-    void setQ(char* temp1, int temp2);
+    void setQ();
     ~String();
-    int getlen();
-    char getQ(int temp);
-};
-
-class Ctrl{
-    String quiz;
-    char* answer;
-    int chance = 0;
-    char wrong[26];
-    char input;
-public:
-    Ctrl();
-    Ctrl(char* temp);
-    int comp(char temp);
-    void play();
-    bool end();
+    void change();
 };

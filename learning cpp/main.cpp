@@ -3,7 +3,9 @@
 using namespace std;
 
 int main(){
-    Ctrl game("CokeCola");
-    game.play();
+    char*query;
+    char temp;
+    String sen;
+    sen.setQ();
+    sen.change();
 }
-
