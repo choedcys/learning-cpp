@@ -1,22 +1,22 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include<string>
 #include <vector>
 using namespace std;
 
 int main() {
-    vector<int> v;
-    int sum = 0;
-    vector<int>::iterator ptr;
-    srand((unsigned int)time(NULL));
-    for(int i = 0 ; i < 10 ; i++){
-        v.push_back(1+rand()%100);
+    string temp;
+    vector<string> v;
+    vector<string>::iterator it;
+    cout<<"이름 5개를 입력하세요"<<endl;
+    for(int i = 0 ; i < 5 ; i++){
+        cout<<i+1<<"번째:";
+        getline(cin,temp);
+        v.push_back(temp);
     }
-    cout<<"벡터의 요소: [";
-    for(ptr = v.begin() ; ptr < v.end() ; ptr++){
-        sum += *ptr;
-        cout<<*ptr<<" ";
+    temp = *v.begin();
+    for(it = v.begin() ; it != v.end() ; it++){
+        if(*it > temp)
+            temp = *it;
     }
-    cout<<"]"<<endl;
-    cout<<"합: "<<sum<<endl;
+    cout<<temp;
 }
