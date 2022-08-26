@@ -1,22 +1,33 @@
 #include <iostream>
-#include<string>
 #include <vector>
-using namespace std;
+template <typename T>
+void print_vector(std::vector<T>& vec) {
+    std::cout << "[ ";
+    for (typename std::vector<T>::iterator itr = vec.begin(); itr != vec.end();++itr) {
+        std::cout << *itr << " ";
+    }
+    std::cout << "]"; }
 
 int main() {
-    string temp;
-    vector<string> v;
-    vector<string>::iterator it;
-    cout<<"이름 5개를 입력하세요"<<endl;
-    for(int i = 0 ; i < 5 ; i++){
-        cout<<i+1<<"번째:";
-        getline(cin,temp);
-        v.push_back(temp);
+    std::vector<int> vec;
+    vec.push_back(10);
+    vec.push_back(20);
+    vec.push_back(30);
+    vec.push_back(40);
+    vec.push_back(20);
+    std::cout << "처음 벡터 상태" << std::endl;
+    print_vector(vec);
+    std::vector<int>::iterator itr = vec.begin();
+    std::vector<int>::iterator end_itr = vec.end();
+    
+    for (std::vector<int>::size_type i = 0; i != vec.size(); i++) {
+        if (vec[i] == 20) {
+            vec.erase(vec.begin() + i);
+            i--;
+        }
     }
-    temp = *v.begin();
-    for(it = v.begin() ; it != v.end() ; it++){
-        if(*it > temp)
-            temp = *it;
-    }
-    cout<<temp;
+
+std::cout << "값이 20 인 원소를 지운다!" << std::endl;
+print_vector(vec);
+        
 }
