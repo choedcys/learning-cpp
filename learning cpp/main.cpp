@@ -1,20 +1,29 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
-
-
 
 int main(){
     vector<int> v;
-    v.push_back(1);
-    v.push_back(2);
-    v.push_back(3);
-    vector<int>::iterator iterator = v.begin();
+    int temp;
     
-    for( ; iterator < v.end() ; iterator++){
-        *iterator *= 2;
+    cout<<"5개를 입력하시오: ";
+    for(int i = 0 ; i < 5 ; i++){
+        cin>>temp;
+        v.push_back(temp);
     }
-    for(int i = 0 ; i < 3 ; i++){
-        cout<<v[i]<<endl;
+    vector<int>::iterator it = v.begin();
+    cout<<"sort()전: ";
+    for( ; it < v.end() ;it++){
+        cout<<*it<<" ";
     }
+    cout<<endl;
+    it = v.begin();
+    sort(v.begin(),v.end());
+    cout<<"sort()후: ";
+    for( ; it < v.end() ;it++){
+        cout<<*it<<" ";
+    }
+    cout<<endl;
+    return 0;
 }
