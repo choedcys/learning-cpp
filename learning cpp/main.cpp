@@ -2,28 +2,27 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+double calculate(vector<double>t){
+    vector<double>::iterator it = t.begin();
+    double sum = 0.0;
+    sort(t.begin(),t.end());
+    it++;
+    for( ; it < t.end() ; it++)
+        sum += *it;
+    it--;
+    sum -= *it;
+    return sum;
+}
 
 int main(){
-    vector<int> v;
-    int temp;
+    vector<double> v;
+    double temp;
     
-    cout<<"5개를 입력하시오: ";
-    for(int i = 0 ; i < 5 ; i++){
+    for(int i = 0 ; i < 10 ; i++){
+        cout<<"점수를 입력하시오: ";
         cin>>temp;
         v.push_back(temp);
     }
-    vector<int>::iterator it = v.begin();
-    cout<<"sort()전: ";
-    for( ; it < v.end() ;it++){
-        cout<<*it<<" ";
-    }
-    cout<<endl;
-    it = v.begin();
-    sort(v.begin(),v.end());
-    cout<<"sort()후: ";
-    for( ; it < v.end() ;it++){
-        cout<<*it<<" ";
-    }
-    cout<<endl;
+    cout<<"최종점수: "<<calculate(v);
     return 0;
 }
