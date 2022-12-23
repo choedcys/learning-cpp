@@ -17,5 +17,7 @@ int main(){
         {
             vec.push_back(rand());
         }
-    cout<<count_if(vec.begin(), vec.end(), even);
+    sort(vec.begin(), vec.end());
+    cout<<"난수의 최소값: "<<vec[0]<<endl;
+    cout<<"난수의 최대값: "<<vec[99]<<endl;
 }
