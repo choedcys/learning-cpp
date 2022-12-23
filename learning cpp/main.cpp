@@ -6,14 +6,19 @@ using namespace std;
 
 
 
+bool condition(int temp){
+    if(temp % 400 == 0 || temp % 4 == 0 && temp % 100 != 0)
+        return true;
+    else
+        return false;
+}
+
 int main(){
-    vector<int> vec = {5,3,1,2,3,4};
-    vector<int>::iterator it = vec.begin();
-    vector<int>::iterator cursor;
-    while(it <= vec.end()){
-        cursor = find(it, vec.end(), 3);
-        it += distance(vec.begin(), cursor);
-        cout<<3<<"은"<<distance(vec.begin(), cursor)+1<<"번째 원소"<<endl;
-        it++;
+    vector<int>year;
+    vector<int>::iterator y;
+    for(int i = 1990 ; i < 2020 ; i++){
+        year.push_back(i);
     }
+    y =find_if(year.begin(), year.end(), condition);
+    cout<<"1990~2019년 사이의 첫 번째 윤년 : "<< *y<<"년"<<endl;
 }
