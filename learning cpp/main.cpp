@@ -2,22 +2,16 @@
 #include <vector>
 #include <algorithm>
 #include "header.h"
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
-
-bool even(int temp){
-    return (temp %2 == 0);
+int Plus(int temp1, int temp2){
+    return temp1+temp2;
 }
+
 int main(){
-    vector<int>vec;
-    srand((unsigned int)time(NULL));
-    for (int i = 0; i < 100; ++i)
-        {
-            vec.push_back(rand());
-        }
-    sort(vec.begin(), vec.end());
-    cout<<"난수의 최소값: "<<vec[0]<<endl;
-    cout<<"난수의 최대값: "<<vec[99]<<endl;
+    vector<int>A = {1,2,3,4,5,6,7,8,9,10};
+    vector<int>B = {10,11,12,13,14,15,16,17,18,19};
+    vector<int>C(10);
+    transform(A.begin(), A.end(), B.begin(), C.begin(), Plus);
+    print(C);
 }
