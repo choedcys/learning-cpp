@@ -4,14 +4,40 @@
 #include "header.h"
 using namespace std;
 
-int Plus(int temp1, int temp2){
-    return temp1+temp2;
-}
 
+#include <string>
+
+bool condition(int temp){
+    return temp % 2 == 1;
+}
 int main(){
-    vector<int>A = {1,2,3,4,5,6,7,8,9,10};
-    vector<int>B = {10,11,12,13,14,15,16,17,18,19};
-    vector<int>C(10);
-    transform(A.begin(), A.end(), B.begin(), C.begin(), Plus);
-    print(C);
+    string X;
+    int i = 0;
+    int count = 0;
+    string tmp="";
+    vector<string> vec;
+    vector<string>::iterator it;
+    cout<<"문장을 입력하세요"<<endl;
+    getline(cin, X);
+    while(i < X.length()){
+        if(X.at(i) != ' ' && i != X.length()-1){
+            tmp+=X.at(i);
+        }
+        else if(i == X.length()-1){
+            tmp += X.at(i);
+            vec.push_back(tmp);
+        }
+        else{
+            vec.push_back(tmp);
+            tmp = "";
+        }
+        i++;
+    }
+    cout<<"크기가 6 이상인 단어의 수: ";
+    for(it = vec.begin() ; it != vec.end() ; it++){
+        if(it->length() >= 6){
+            count++;
+        }
+    }
+    cout<<count<<endl;
 }
