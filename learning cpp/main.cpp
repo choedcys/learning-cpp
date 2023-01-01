@@ -1,43 +1,32 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "header.h"
-using namespace std;
+#include <cmath>
+//#include "header.h"
 
-
-#include <string>
-
-bool condition(int temp){
-    return temp % 2 == 1;
+double distance(int x1, int y1, int x2, int y2){
+    double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+    return dist;
 }
 int main(){
-    string X;
-    int i = 0;
-    int count = 0;
-    string tmp="";
-    vector<string> vec;
-    vector<string>::iterator it;
-    cout<<"문장을 입력하세요"<<endl;
-    getline(cin, X);
-    while(i < X.length()){
-        if(X.at(i) != ' ' && i != X.length()-1){
-            tmp+=X.at(i);
+    int x1,y1,r1,x2,y2,r2,T;
+    std::cin>>T;
+    int *res = new int[T];
+    for(int i = 0 ; i < T ; i++){
+        std::cin>>x1>>y1>>r1>>x2>>y2>>r2;
+        if((x1>=-10000 && x1 <=10000) && (y1>=-10000 && y1 <=10000) && (x2>=-10000 && x2 <=10000) && (y2>=-10000 && y2 <=10000) && (r1> 0 && r1 <=10000) && (r2> 0 && r2 <=10000)){
+            if(distance(x1,y1,x2,y2) == r1+r2 || (distance(x1,y1,x2,y2) == abs(r1-r2) && r1!=r2))
+                res[i] = 1;
+            else if(distance(x1,y1,x2,y2) > r1+r2 || distance(x1,y1,x2,y2) < abs(r1-r2))
+                res[i] = 0;
+            else if(distance(x1,y1,x2,y2) == 0 && r1==r2)
+                res[i] = -1;
+            else
+                res[i] = 2;
         }
-        else if(i == X.length()-1){
-            tmp += X.at(i);
-            vec.push_back(tmp);
-        }
-        else{
-            vec.push_back(tmp);
-            tmp = "";
-        }
-        i++;
+        
     }
-    cout<<"크기가 6 이상인 단어의 수: ";
-    for(it = vec.begin() ; it != vec.end() ; it++){
-        if(it->length() >= 6){
-            count++;
-        }
+    for(int i = 0 ; i < T ; i++){
+        std::cout<<res[i]<<std::endl;
     }
-    cout<<count<<endl;
 }
