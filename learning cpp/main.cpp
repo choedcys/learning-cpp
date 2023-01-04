@@ -1,32 +1,36 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-//#include "header.h"
 
-double distance(int x1, int y1, int x2, int y2){
-    double dist = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-    return dist;
-}
 int main(){
-    int x1,y1,r1,x2,y2,r2,T;
-    std::cin>>T;
-    int *res = new int[T];
+    int T, N;
+    int arr[2] = {1,1};
+    int rot = 0;
+    int **res = (int**)malloc(T*sizeof(int*));
     for(int i = 0 ; i < T ; i++){
-        std::cin>>x1>>y1>>r1>>x2>>y2>>r2;
-        if((x1>=-10000 && x1 <=10000) && (y1>=-10000 && y1 <=10000) && (x2>=-10000 && x2 <=10000) && (y2>=-10000 && y2 <=10000) && (r1> 0 && r1 <=10000) && (r2> 0 && r2 <=10000)){
-            if(distance(x1,y1,x2,y2) == r1+r2 || (distance(x1,y1,x2,y2) == abs(r1-r2) && r1!=r2))
-                res[i] = 1;
-            else if(distance(x1,y1,x2,y2) > r1+r2 || distance(x1,y1,x2,y2) < abs(r1-r2))
-                res[i] = 0;
-            else if(distance(x1,y1,x2,y2) == 0 && r1==r2)
-                res[i] = -1;
-            else
-                res[i] = 2;
+        res[i] = (int*) malloc(sizeof(int)*2);
+    }
+    std::cin>>T;
+    for(int i = 0 ; i < T ; i++){
+        while(1){
+            std::cin>>N;
+            if(N <= 40 && N>= 0)
+                break;
         }
-        
+        int temp1[2] = {1,0};
+        int temp2[2] = {0,1};
+        while(rot != N-1){
+            arr[0] = temp1[0] + temp2[0];
+            arr[1] = temp1[1] + temp2[1];
+            temp1[0] = temp2[0];
+            temp1[1] = temp2[1];
+            temp2[0] = arr[0];
+            temp2[1] = arr[1];
+            rot++;
+        }
+        res[i][0] = arr[0];
+        res[i][1] = arr[1];
+        rot = 0;
     }
     for(int i = 0 ; i < T ; i++){
-        std::cout<<res[i]<<std::endl;
+        std::cout<<res[i][0]<<" "<<res[i][1]<<std::endl;
     }
 }
