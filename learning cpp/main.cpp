@@ -1,18 +1,19 @@
 #include <iostream>
 
-class Linear{
-    double a;
-    double b;
+class Money{
+    int _Money = 0;
 public:
-    Linear(double s = 1, double y = 0):a(s),b(y){}
-    double operator()(double x) {return b + a*x;}
+    int operator()(){
+        return this->_Money;
+    }
+    void operator()(int N){
+        this->_Money += N;
+    }
 };
 
 int main(){
-    Linear f1;
-    Linear f2(2.5, 10.0);
-    double y1 = f1(12.5);
-    double y2 = f2(0.4);
-    std::cout<<y1<<" "<<y2 <<std::endl;
-    return 0;
+    Money money;
+    money(100);
+    int M = money();
+    std::cout<<M;
 }
