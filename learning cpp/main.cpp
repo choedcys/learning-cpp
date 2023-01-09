@@ -3,22 +3,27 @@
 #include <vector>
 #include <algorithm>
 
-bool isGreaterThan50(int e){
-    return (e>50) ;
+template <typename T>
+void print(const T& v){
+    typename T::const_iterator it;
+    
+    for(it = v.begin() ; it != v.end(); ++it){
+        std::cout<<*it<<' ';
+    }
+    std::cout<<std::endl;
 }
 
 int main(){
-    std::vector<int> vec;
+    std::vector <int> vec;
     for(int i = 0 ; i < 10 ; i++){
-        vec.push_back(rand()%100);
+        vec.push_back(rand() % 100);
     }
-    std::vector<int>::iterator it;
+    print(vec);
     
-    for(it=vec.begin(); ;it++){
-        it = find_if(it, vec.end(),isGreaterThan50);
-        if(it == vec.end())
-            break;
-        std::cout<<*it<<"발견"<<std::endl;
-    }
+    std::sort(vec.begin(), vec.end(), std::greater<int>());
+    print(vec);
+    
+    std::sort(vec.begin(), vec.end(), std::less<int>());
+    print(vec);
     return 0;
 }
