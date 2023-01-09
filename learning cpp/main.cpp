@@ -1,9 +1,22 @@
 #include <iostream>
-#include <functional>
+class mySum{
+    int sumRet = 0;
+public:
+    int operator()(int num1_){
+        sumRet += num1_;
+        return sumRet;
+    }
+};
 
 int main(){
-    std::minus<int> add;
-    std::cout<<add(11,22)<<std::endl;
-    std::cout<<std::minus<int>()(100,200)<<std::endl;
+    int num1 = 10;
+    int num2 = 20;
+    
+    mySum sumP;
+    int ret = sumP(num1);
+    std::cout<<ret<<std::endl;
+    
+    ret = sumP(num2);
+    std::cout<<ret<<std::endl;
     return 0;
 }
