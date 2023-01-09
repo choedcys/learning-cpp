@@ -1,22 +1,18 @@
 #include <iostream>
-class mySum{
-    int sumRet = 0;
+
+class Linear{
+    double a;
+    double b;
 public:
-    int operator()(int num1_){
-        sumRet += num1_;
-        return sumRet;
-    }
+    Linear(double s = 1, double y = 0):a(s),b(y){}
+    double operator()(double x) {return b + a*x;}
 };
 
 int main(){
-    int num1 = 10;
-    int num2 = 20;
-    
-    mySum sumP;
-    int ret = sumP(num1);
-    std::cout<<ret<<std::endl;
-    
-    ret = sumP(num2);
-    std::cout<<ret<<std::endl;
+    Linear f1;
+    Linear f2(2.5, 10.0);
+    double y1 = f1(12.5);
+    double y2 = f2(0.4);
+    std::cout<<y1<<" "<<y2 <<std::endl;
     return 0;
 }
