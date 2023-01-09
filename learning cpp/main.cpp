@@ -1,39 +1,24 @@
 #include <iostream>
 #include <functional>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
 
-struct Plus{
-    int operator()(int a, int b)const{
-        return a+b;
-    }
-};
+bool isGreaterThan50(int e){
+    return (e>50) ;
+}
 
 int main(){
-    std::vector<int> v1;
-    std::vector<int> v2;
-    
-    v1.push_back(10);
-    v1.push_back(20);
-    v1.push_back(30);
-    v2.push_back(1);
-    v2.push_back(2);
-    v2.push_back(3);
-    for(int i = 0 ; i < v1.size() ; i++){
-        std::cout << v1[i]<<" ";
+    std::vector<int> vec;
+    for(int i = 0 ; i < 10 ; i++){
+        vec.push_back(rand()%100);
     }
-    std::cout<<std::endl;
+    std::vector<int>::iterator it;
     
-    for(int i = 0 ; i < v2.size() ; i++){
-        std::cout << v2[i]<<" ";
+    for(it=vec.begin(); ;it++){
+        it = find_if(it, vec.end(),isGreaterThan50);
+        if(it == vec.end())
+            break;
+        std::cout<<*it<<"발견"<<std::endl;
     }
-    std::cout<<std::endl;
-    
-    std::transform(v1.begin(), v1.end(), v2.begin(), v1.begin(), Plus());
-    
-    for(int i = 0 ; i < v1.size() ; i++){
-        std::cout << v1[i]<<" ";
-    }
-    std::cout<<std::endl;
     return 0;
 }
