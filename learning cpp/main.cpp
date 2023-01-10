@@ -2,9 +2,14 @@
 #include <list>
 #include <algorithm>
 
-void add10(int& elem){
-    elem += 10;
-}
+class Add{
+    int v;
+public:
+    Add(int temp):v(temp){}
+    void operator()(int& elem)const{
+        elem += v;
+    }
+};
 void outint(int n){
     std::cout<<n<<" ";
 }
@@ -16,7 +21,7 @@ int main(){
     values.push_back(4);
     
     for_each(values.begin(), values.end(), outint);
-    for_each(values.begin(), values.end(), add10);
+    for_each(values.begin(), values.end(), Add(20));
     std::cout<<std::endl;
     
     for_each(values.begin(), values.end(), outint);
