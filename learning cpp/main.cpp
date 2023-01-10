@@ -1,16 +1,28 @@
 #include <iostream>
 #include <functional>
+#include <vector>
+#include <algorithm>
 
 int main(){
-    int result;
+    std::vector<bool> v1;
+    std::vector<bool> v2;
+    std::vector<bool> v3(3);
     
-    std::logical_and<int> And;
-    result = And(10 == 10, 1 < 2);
-    std::cout<<result<<std::endl;
+    v1.push_back(true);
+    v1.push_back(false);
+    v1.push_back(true);
     
-    result = std::logical_and<int>()(10 > 20, 'A'<'B');
-    std::cout<<result<<std::endl;
+    v2.push_back(false);
+    v2.push_back(false);
+    v2.push_back(true);
     
-    if(std::logical_and<int>()(1,1))
-        std::cout<<"true"<<std::endl;
+    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), std::logical_and<bool>());
+    
+    for(int i = 0 ; i < v3.size() ; i++){
+        if(v3[i])
+            std::cout<<"true ";
+        else
+            std::cout<<"false ";
+    }
+    std::cout<<std::endl;
 }
