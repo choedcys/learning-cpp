@@ -1,28 +1,18 @@
 #include <iostream>
-#include <list>
-#include <algorithm>
+bool func(int temp1, int temp2){
+    return temp1 == temp2;
+}
 
-class Add{
-    int v;
+class FunctionObject{
 public:
-    Add(int temp):v(temp){}
-    void operator()(int& elem)const{
-        elem += v;
+    bool operator()(int temp1, int temp2){
+        return temp1 == temp2;
     }
 };
-void outint(int n){
-    std::cout<<n<<" ";
-}
 int main(){
-    std::list<int> values;
-    values.push_back(1);
-    values.push_back(2);
-    values.push_back(3);
-    values.push_back(4);
-    
-    for_each(values.begin(), values.end(), outint);
-    for_each(values.begin(), values.end(), Add(20));
-    std::cout<<std::endl;
-    
-    for_each(values.begin(), values.end(), outint);
+    FunctionObject FO;
+    bool (*F)(int, int) = func;
+    std::cout<<"함수로 10과 20을 비교: "<<func(10,20)<<std::endl;
+    std::cout<<"함수포인터로 10과 20을 비교: "<<F(10,20)<<std::endl;
+    std::cout<<"함수객체로 10과 20을 비교: "<<FO(10,20)<<std::endl;
 }
