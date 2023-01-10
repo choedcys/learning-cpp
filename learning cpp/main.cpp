@@ -1,17 +1,16 @@
 #include <iostream>
-class MoneyBox{
-    int val = 0;
+
+template <typename T>
+class Complex{
 public:
-    int operator()(int temp){
-        val += temp;
-        return val;
+    Complex(){}
+    T operator()(T temp1,T temp2){
+        return temp1*temp2;
     }
 };
 
 int main(){
-    MoneyBox moneyBox;
-    std::cout<<"moneyBox(100): "<<moneyBox(100)<<std::endl;
-    std::cout<<"moneyBox(500): "<<moneyBox(500)<<std::endl;
-    std::cout<<"moneyBox(2000): "<<moneyBox(2000)<<std::endl;
+    Complex<int> comp;
+    std::cout<<"2 * 7 = "<<comp(2, 7)<<std::endl;
     return 0;
 }
