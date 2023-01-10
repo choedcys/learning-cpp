@@ -1,28 +1,23 @@
 #include <iostream>
-#include <functional>
-#include <vector>
+#include <list>
 #include <algorithm>
 
+void add10(int& elem){
+    elem += 10;
+}
+void outint(int n){
+    std::cout<<n<<" ";
+}
 int main(){
-    std::vector<bool> v1;
-    std::vector<bool> v2;
-    std::vector<bool> v3(3);
+    std::list<int> values;
+    values.push_back(1);
+    values.push_back(2);
+    values.push_back(3);
+    values.push_back(4);
     
-    v1.push_back(true);
-    v1.push_back(false);
-    v1.push_back(true);
-    
-    v2.push_back(false);
-    v2.push_back(false);
-    v2.push_back(true);
-    
-    transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), std::logical_and<bool>());
-    
-    for(int i = 0 ; i < v3.size() ; i++){
-        if(v3[i])
-            std::cout<<"true ";
-        else
-            std::cout<<"false ";
-    }
+    for_each(values.begin(), values.end(), outint);
+    for_each(values.begin(), values.end(), add10);
     std::cout<<std::endl;
+    
+    for_each(values.begin(), values.end(), outint);
 }
