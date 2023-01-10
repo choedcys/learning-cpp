@@ -1,29 +1,16 @@
 #include <iostream>
 #include <functional>
-#include <vector>
-#include <algorithm>
-
-template <typename T>
-void print(const T& v){
-    typename T::const_iterator it;
-    
-    for(it = v.begin() ; it != v.end(); ++it){
-        std::cout<<*it<<' ';
-    }
-    std::cout<<std::endl;
-}
 
 int main(){
-    std::vector <int> vec;
-    for(int i = 0 ; i < 10 ; i++){
-        vec.push_back(rand() % 100);
-    }
-    print(vec);
+    int result;
     
-    std::sort(vec.begin(), vec.end(), std::greater<int>());
-    print(vec);
+    std::logical_and<int> And;
+    result = And(10 == 10, 1 < 2);
+    std::cout<<result<<std::endl;
     
-    std::sort(vec.begin(), vec.end(), std::less<int>());
-    print(vec);
-    return 0;
+    result = std::logical_and<int>()(10 > 20, 'A'<'B');
+    std::cout<<result<<std::endl;
+    
+    if(std::logical_and<int>()(1,1))
+        std::cout<<"true"<<std::endl;
 }
