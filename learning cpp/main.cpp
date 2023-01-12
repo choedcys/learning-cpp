@@ -2,36 +2,34 @@
 #include <functional>
 #include <vector>
 
-void print(std::vector<int> temp){
-    std::vector<int>::iterator it = temp.begin();
-    std::cout<<"{ ";
-    for( ; it != temp.end() ; it++){
-        std::cout<<*it<<" ";
+class SUM{
+public:
+    int stack = 0;
+    int operator()(int temp){
+        stack += temp;
+        return stack;
     }
-    std::cout<<"}"<<std::endl;
+};
+int main(void){
+    SUM obj;
+    int cnt = 0;
+    std::vector<int>v;
+    v.push_back(10);
+    v.push_back(20);
+    v.push_back(30);
+    std::vector<int>::iterator it = v.begin();
+    for( ; it != v.end() ; it++){
+        obj(*it);
+        std::cout<<*it;
+        if(cnt != v.size()-2){
+            std::cout<<"+";
+        }
+        else{
+            std::cout<<"+";
+        }
+        cnt++;
+    }
+    std::cout<<"="<<obj.stack<<std::endl;
 }
 
-int main(){
-    std::vector<int> V1;
-    std::vector<int> V2;
-    std::vector<int> V3;
-    for(int i = 0 ; i < 3 ; i++){
-        V1.push_back((i+1)*10);
-    }
-    for(int i = 0 ; i < 3 ; i++){
-        V2.push_back(i+1);
-    }
-    std::vector<int>::iterator it1 = V1.begin();
-    std::vector<int>::iterator it2 = V2.begin();
-    for(; it1 != V1.end() ; it1++){
-        V3.push_back(std::plus<int>()(*it1, *it2));
-        it2++;
-    }
-    std::cout<<"V1: ";
-    print(V1);
-    std::cout<<"V2: ";
-    print(V2);
-    std::cout<<"V1+V2: ";
-    print(V3);
-    return 0;
-}
+
