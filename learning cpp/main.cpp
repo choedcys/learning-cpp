@@ -1,24 +1,30 @@
 #include<iostream>
 #include<algorithm>
-#include<list>
+#include<array>
 
-template <typename T>
-bool compare(int n){
-    return 10 <= n;
-}
+class Sum{
+public:
+    int operator()(std::array<int, 10> temp, int n){
+        if(n % 2 == 0){
+            int sum = 0;
+            for(int i = 0 ; i < 5 ; i++){
+                sum+=temp[i*2+1];
+            }
+            return sum;
+        }
+        else{
+            int sum = 0;
+            for(int i = 0 ; i < 5 ; i++){
+                sum+=temp[i*2];
+            }
+            return sum;
+        }
+    }
+};
 
 int main(){
-    std::list<int> l1 = {10, 100, 5, 4, 70, 2};
-    std::list<int>::iterator it = l1.begin();
-    std::cout<<"삭제 전 list: ";
-    for( ; it != l1.end() ; it++){
-        std::cout<<*it<<" ";
-    }
-    std::cout<<std::endl;
-    l1.erase(std::remove_if(l1.begin(), l1.end(),compare<int>),l1.end());
-    std::cout<<"삭제 후 list: ";
-    for( auto n:l1){
-        std::cout<<n<<" ";
-    }
-    std::cout<<std::endl;
+    Sum obj;
+    std::array<int, 10> theList = {1,2,3,4,5,6,7,8,9,10};
+    std::cout<<"짝수 합: "<<obj(theList,0)<<std::endl;
+    std::cout<<"홀수 합: "<<obj(theList,1)<<std::endl;
 }
