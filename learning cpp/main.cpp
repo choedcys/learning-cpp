@@ -1,13 +1,9 @@
 #include<iostream>
+#include<vector>
 
 int main(){
-    [](int a){
-        if(a>0){
-            std::cout<<"절대값: "<<a<<std::endl;
-        }
-        else{
-            std::cout<<"절대값: "<<-a<<std::endl;
-            
-        }
-    }(-109);
+    std::vector<std::string> v = {"apple", "banana", "grape", "orange", "kiwi"};
+    std::for_each(v.begin(), v.end(),[](std::string cursor){
+        std::cout<<cursor<<std::endl;
+    });
 }
