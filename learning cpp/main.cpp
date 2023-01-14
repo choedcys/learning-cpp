@@ -1,16 +1,17 @@
-#include <iostream>
-#include <algorithm>
-#include <functional>
-#include <vector>
-
+#include<iostream>
 
 int main(){
-    std::vector<std::function<void(void)>> funcs;
-    
-    funcs.push_back([](){std::cout << "Hello"<<std::endl;});
-    funcs.push_back([](){std::cout << "lambda!"<<std::endl;});
-    
-    for(auto& func : funcs){
-        func();
-    }
+    int a, b;
+    std::cout<<"숫자 2개 입력: ";
+    std::cin>>a>>b;
+    [=](int a, int b){
+        if(a>b){
+            std::cout<<"큰 값: "<<a<<std::endl;
+            std::cout<<"작은 값: "<<b<<std::endl;
+        }
+        else{
+            std::cout<<"큰 값: "<<b<<std::endl;
+            std::cout<<"작은 값: "<<a<<std::endl;
+        }
+    }(a,b);
 }
