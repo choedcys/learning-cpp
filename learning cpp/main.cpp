@@ -1,12 +1,21 @@
 #include <iostream>
+#include <string>
 
-void func(int n){
-    std::cout<<n<<" ";
-    if(n < 1)
-        return;
-    func(n-5);
+std::string reverse(std::string temp1, int n=0){
+    char temp2;
+    temp2 = temp1[n];
+    temp1[n] = temp1[temp1.length()-1-n];
+    temp1[temp1.length()-1-n] = temp2;
+    if(n == ((temp1.length()-1)/2))
+        return temp1;
+    else{
+        return reverse(temp1, n+1);
+    }
+    
 }
 
 int main(){
-    func(20);
+    std::string word;
+    getline(std::cin,word);
+    std::cout<<reverse(word,0)<<std::endl;
 }
