@@ -1,21 +1,16 @@
 #include <iostream>
 #include <string>
 
-std::string reverse(std::string temp1, int n=0){
-    char temp2;
-    temp2 = temp1[n];
-    temp1[n] = temp1[temp1.length()-1-n];
-    temp1[temp1.length()-1-n] = temp2;
-    if(n == ((temp1.length()-1)/2))
-        return temp1;
-    else{
-        return reverse(temp1, n+1);
-    }
-    
-}
+void reverse(std::string word, int n = 0){
+    if(n == word.length())
+        return;
+    else
+        reverse(word,n+1);
+    std::cout<<word.at(n);
+ }
 
-int main(){
-    std::string word;
-    getline(std::cin,word);
-    std::cout<<reverse(word,0)<<std::endl;
-}
+ int main(){
+     std::string word;
+     getline(std::cin,word);
+     reverse(word);
+ }
