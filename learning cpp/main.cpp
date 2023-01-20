@@ -1,18 +1,16 @@
 #include <iostream>
 
-int func(int start, int end){
-    if(start == end)
-        return end;
+int func(int N){
+    if(N==1)
+        return 1;
     else
-        return start+func(start+1, end);
+        return N*func(N-1);
 }
 
 int main(){
-    int start, end;
-    std::cin>>start>>end;
-    std::cout<<func(start, end)<<std::endl;
+    int N;
+    std::cin>>N;
+    std::cout<<func(N)<<std::endl;
 }
-
-
 
 
