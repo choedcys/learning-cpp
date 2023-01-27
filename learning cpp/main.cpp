@@ -12,19 +12,19 @@
 
 #include <iostream>
 
- void show_digit(int N){
-     if(N == 0){
-         return;
+ void Binary(int N){
+     if(N < 2){
+         
      }
      else{
-         show_digit(N/10);
-         std::cout<<N%10<<" ";
+         Binary(N/2);
      }
+     std::cout<<N%2;
  }
 
  int main(){
      int N;
      std::cin>>N;
-     show_digit(N);
+     Binary(N);
      std::cout<<std::endl;
  }
