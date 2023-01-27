@@ -12,28 +12,19 @@
 
 #include <iostream>
 
- void Space(int K){
-     if(K == 0)
-         return;
-     else{
-         std::cout<<" ";
-         Space(K-1);
-     }
- }
- void Sharp(int M){
-     if(M==0){
-         std::cout<<std::endl;
+ void func(int N){
+     if(N == 0){
          return;
      }
      else{
-         std::cout<<"#";
-         Sharp(M-1);
+         std::cout<<N%10<<" ";
+         func(N/10);
      }
  }
 
  int main(){
-     for(int i = 5 ; i >= 1 ; i--){
-         Sharp(2*i-1);
-         Space(6-i);
-     }
+     int N;
+     std::cin>>N;
+     func(N);
+     std::cout<<std::endl;
  }
