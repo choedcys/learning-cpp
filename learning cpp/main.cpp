@@ -1,38 +1,39 @@
-#include <iostream>
-#include <vector>
-#include <string>
+//#include<iostream>
+//
+//int BinarySearch(){
+//
+//}
+//int main(){
+//    int Key;
+//    int arr[15] = {2,5,34,32,1,4,8,10,23,26,17,19,21,23,6};
+//    std::cin>>
+//}
 
-int main(){
-    std::string temp;
-    std::vector<std::string> Man;
-    std::vector<std::string> Woman;
-    std::vector<std::string> Union;
-    std::cout<<"철수친구: ";
-    while(1){
-        getline(std::cin,temp);
-        if(temp == "END")
-            break;
-        else
-            Man.push_back(temp);
-    }
-    std::cout<<"영희친구: ";
-    while(1){
-        getline(std::cin,temp);
-        if(temp == "END")
-            break;
-        else
-            Woman.push_back(temp);
-    }
-    sort(Man.begin(), Man.end());
-    sort(Woman.begin(), Woman.end());
-    std::vector<std::string>::iterator it1 = Man.begin();
-    std::vector<std::string>::iterator it2 = Woman.begin();
-    std::cout<<"철수친구: ";
-    for( ; it1 != Man.end() ; it1++){
-        std::cout<<*it1<<" ";
-    }
-    std::cout<<"영희친구: ";
-    for( ; it2 != Woman.end() ; it2++){
-        std::cout<<*it2<<" ";
-    }
-}
+
+#include <iostream>
+
+ void Space(int K){
+     if(K == 0)
+         return;
+     else{
+         std::cout<<" ";
+         Space(K-1);
+     }
+ }
+ void Sharp(int M){
+     if(M==0){
+         std::cout<<std::endl;
+         return;
+     }
+     else{
+         std::cout<<"#";
+         Sharp(M-1);
+     }
+ }
+
+ int main(){
+     for(int i = 5 ; i >= 1 ; i--){
+         Sharp(2*i-1);
+         Space(6-i);
+     }
+ }
