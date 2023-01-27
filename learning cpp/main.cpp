@@ -12,19 +12,19 @@
 
 #include <iostream>
 
- void func(int N){
+ void show_digit(int N){
      if(N == 0){
          return;
      }
      else{
+         show_digit(N/10);
          std::cout<<N%10<<" ";
-         func(N/10);
      }
  }
 
  int main(){
      int N;
      std::cin>>N;
-     func(N);
+     show_digit(N);
      std::cout<<std::endl;
  }
