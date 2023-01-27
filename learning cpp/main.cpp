@@ -12,19 +12,18 @@
 
 #include <iostream>
 
- void Binary(int N){
-     if(N < 2){
-         
+ int Comp(int N,int K){
+     if(K==0){
+         return 1;
      }
      else{
-         Binary(N/2);
+         return N*Comp(N,K-1);
      }
-     std::cout<<N%2;
  }
 
  int main(){
-     int N;
-     std::cin>>N;
-     Binary(N);
+     int N,K;
+     std::cin>>N>>K;
+     std::cout<<Comp(N,K);
      std::cout<<std::endl;
  }
