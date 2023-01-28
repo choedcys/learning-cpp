@@ -6,6 +6,12 @@ int BinarySearch(int *arr, int Key, int end, int start){
     if(arr[mid] == Key){
         return mid;
     }
+    else if(arr[start] == Key){
+        return start;
+    }
+    else if(arr[end] == Key){
+        return end;
+    }
     else if(mid - start == 1){
         return -1;
     }
