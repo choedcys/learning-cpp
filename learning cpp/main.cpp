@@ -1,37 +1,26 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-
-int multi(int n){
-    if(n == 0)
-        return 1;
-    else
-        return 10*multi(n-1);
-}
+#include<iostream>
+#include<vector>
 int main(){
-    int N;
-    int cnt = 1;
-    int sum = 0;
-    int amount[26] = {0};
-    std::string temp;
-    std::vector<std::string> Words;
-    std::cin>>N;
-    std::cin.get();
+    int N,M,sum=0,cnt=0;
+    std::vector<int> vec;
+    std::cin>>N>>M;
+    int *A = new int[N];
     for(int i = 0 ; i < N ; i++){
-        getline(std::cin, temp);
-        Words.push_back(temp);
+        std::cin>>A[i];
     }
-    std::vector<std::string>::iterator it = Words.begin();
-    for(; it != Words.end() ; it++){
-        std::string temp = *it;
-        for(int row = temp.length() ; row > 0 ; row--){
-            amount[temp.at(row)-65] += multi(row);
+    for(int col = 0 ; col < N ; col++){
+        for(int row = col ; row <= N ; row++){
+            for(int val = col ; val < row ; val++){
+                sum+=A[val];
+            }
+            vec.push_back(sum);
+            sum=0;
         }
     }
-    for(int i = 25 ; i >= 0 ; i++){
-        sum += amount[i]*cnt;
-        cnt++;
+    std::vector<int>::iterator it = vec.begin();
+    for( ; it!=vec.end();it++){
+        if(M==*it)
+            cnt++;
     }
-    std::cout<<sum;
+    std::cout<<cnt<<std::endl;
 }
