@@ -1,45 +1,48 @@
-#include<iostream>
-#include<string.h>
-#include "header.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include"header.h"
 
 int main(){
-    Inform book[100];
-    forPrint Menu;
-    int count = 0;
-    int *cursor, n;
-    cursor = &n;
-    while(1){
-        printf("====메뉴====\n1. 입력\n2. 특정 인물 출력\n3. 정보변경\n4. 삭제\n5. 전체출력\n");
-        scanf("%d",cursor);
-        if(*cursor == 1){
-            char* str = (char *)malloc(sizeof(char)*100);
-            for(int i = 0 ; i < 4 ; i++){
-                printf("%s: ",Menu.menu[i]);
-                scanf("%s",str);
-                Input(book, str, i, count);
+    int x,y;
+    int a=0;
+    stack = new int[STACK_SIZE];
+    for(int i = 0 ; i < 10 ; i++){
+        append(i+1);
+    }
+    printStack();
+    while(a != 4){
+        printf("++++++Menu++++++\n1. Append\n2. Pop\n3. Insert\n4. Quit Program\n==>");
+        scanf("%d",&a);
+        if(a==1){
+            printf("Append할 숫자를 입력: ");
+            scanf("%d",&x);
+            append(x);
+            printStack();
+        }
+        else if(a==2){
+            printf("Pop할 인덱스를 입력: ");
+            scanf("%d",&x);
+            int temp = pop(x);
+            if(temp != -1){
+                printf("Pop(%d) = %d\n",x,temp);
+                printStack();
             }
-            count++;
         }
-        else if(*cursor == 2){
-            char* str = (char *)malloc(sizeof(char)*100);
-            printf("이름입력: ");
-            scanf("%s",str);
-            Disp(book, str, count);
+        else if(a==3){
+            printf("Insert할 인덱스를 입력: ");
+            scanf("%d",&x);
+            printf("Insert할 값을 입력: ");
+            scanf("%d",&y);
+            if(insert(x, y) != -1){
+                printStack();
+            }
+            else{
+                printStack();
+            }
         }
-        else if(*cursor == 3){
-            char* str = (char *)malloc(sizeof(char)*100);
-            printf("이름입력: ");
-            scanf("%s",str);
-            Change(book, str, count);
-        }
-        else if(*cursor == 4){
-            char* str = (char *)malloc(sizeof(char)*100);
-            printf("이름입력: ");
-            scanf("%s",str);
-            Delete(book, str, count--);
-        }
-        else if (*cursor == 5){
-            ShowAll(book, count);
+        else{
+            printf("잘못된 입력\n");
         }
     }
+    delete[]stack;
 }

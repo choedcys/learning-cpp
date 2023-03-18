@@ -1,66 +1,119 @@
-#include "header.h"
-#include <stdio.h>
-#include <string.h>
-#include <cstdlib>
-forPrint Menu;
+#include<stdio.h>
+#include"header.h"
 
-void Input(Inform* temp, char* str, int N, int IndexOfInform){
-    temp[IndexOfInform].List[N] = (char *)malloc(sizeof(char)*strlen(str)+1);
-    strcpy(temp[IndexOfInform].List[N], str);
+bool isEmpty(){
+    if(top == -1)
+        return 1;
+    else
+        return 0;
 }
-void Disp(Inform* temp, char *index, int N){
-    int det = 0;
-    for(int i = 0 ; i < N ; i++){
-        if(strcmp(temp[i].List[0], index)==0){
-            for(int j = 0 ; j < 4 ; j++){
-                printf("%s: %s\n",Menu.menu[j],temp[i].List[j]);
-            }
-            det++;
-            break;
-        }
+bool isFull(){
+    if(top % STACK_SIZE == 9)
+        return 1;
+    else
+        return 0;
+}
+int insert(int pos, int value){
+    int *temp;
+    if(pos > top){
+        printf("Cannot execute pop because index exceed STACK RANGE\n");
+        return -1;
     }
-    if(det == 0)
-        printf("이름이 없음\n");
+    else if(isFull()){
+        printf("Full STACK\n");
+        temp = new int[STACK_SIZE*size];
+
+        for(int i = 0 ; i < (top + 1) ; i++)
+            temp[i] = stack[i];
+        stack = new int[STACK_SIZE*(size+1)];
+
+        for(int i = 0 ; i < pos ; i++)
+            stack[i] = temp[i];
+        stack[pos] = value;
+        for(int i = pos+1 ; i < top+2 ; i++)
+            stack[i] = temp[i-1];
+
+        size++;
+        top++;
+        printf("Insert Completed!\n");
+        delete [] temp;
+        return 1;
+    }
+    else{
+        printf("Enough Space\n");
+        temp = new int[top-pos];
+        for(int i = pos ; i < top+1 ; i++){
+            temp[i-pos] = stack[i];
+        }
+        stack[pos] = value;
+        for(int i = pos+1 ; i < top+2 ; i++){
+            stack[i] = temp[i-pos-1];
+        }
+        top++;
+        printf("Insert Completed!\n");
+        delete []temp;
+        return 1;
+    }
 }
 
-void Change(Inform* temp, char *index, int N){
-    int det = 0;
-    for(int i = 0 ; i < N ; i++){
-        if(strcmp(temp[i].List[0], index)==0){
-            char *str = (char *)malloc(sizeof(char)*100);
-            for(int j = 1 ; j < 4 ; j++){
-                printf("%s 입력: ",Menu.menu[j]);
-                scanf("%s",str);
-                strcpy(temp[i].List[j], str);
+int pop(int index){
+    int val;
+    if(isEmpty()){
+        printf("Cannot execute pop becaseof Empty STACK\n");
+        return -1;
+    }
+    else if(top < index){
+        printf("Cannot execute pop because index exceed STACK RANGE\n");
+        return -1;
+    }
+    else{
+        val = stack[index];
+        for(int i = index ; i < top+1 ; i++){
+            stack[i] = stack[i+1];
+        }
+        if(top%10 == 0){
+            size--;
+            int *temp = new int[STACK_SIZE*(size)];
+            for(int i = 0 ; i < top ; i++){
+                temp[i] = stack[i];
             }
-            det++;
-            break;
-        }
-    }
-    if(det == 0)
-        printf("이름이 없음\n");
-}
-void Delete(Inform* temp, char *index, int N){
-    int det = 0;
-    for(int i = 0 ; i < N ; i++){
-        if(strcmp(temp[i].List[0], index)==0){
-            for(int j = i ; j < N-1 ; j++){
-                temp[j] = temp[j+1];
+            stack = new int[STACK_SIZE*(size)];
+            for(int i = 0 ; i < top ; i++){
+                stack[i] = temp[i];
             }
-            det++;
-            break;
+            delete []temp;
         }
+        top--;
+        return val;
     }
-    if(det == 0)
-        printf("이름이 없음\n");
 }
-void ShowAll(Inform* temp, int N){
-    printf("이름     전화번호     구분     주소\n");
-    for(int i = 0 ; i < N ; i++){
-        for(int j = 0 ; j < 4 ; j++){
-            printf("%s  ",temp[i].List[j]);
-        }
-        printf("\n");
+
+void append(int item){
+    int *temp;
+
+    if(isFull()){
+        printf("Full STACK\n");
+        temp = new int[(STACK_SIZE*size)];
+
+        for(int i = 0 ; i < (top + 1) ; i++)
+            temp[i] = stack[i];
+        stack = new int[(STACK_SIZE*(size+1))];
+
+        for(int i = 0 ; i < (top + 1) ; i++)
+            stack[i] = temp[i];
+        stack[++top] = item;
+
+        size++;
+        delete[]temp;
     }
-    printf("\n");
+    else
+        stack[++top] = item;
+}
+void printStack(){
+    printf("현재 스택 상태: ");
+    for(int i = 0 ; i < top+1 ; i++){
+        printf("%d ",stack[i]);
+    }
+    printf("\n 스택의 크기: %d",STACK_SIZE*size);
+    printf("\n\n");
 }

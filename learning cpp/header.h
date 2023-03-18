@@ -1,15 +1,15 @@
-#include <cstdlib>
-typedef struct STRUCT{
-    char *List[4];
-} Inform;
+#define STACK_SIZE 10
 
-struct forPrint{
-    char menu[4][20] = {"이름","전화번호","구분","주소"};
-};
+int *stack;
+int top = -1;
+int size = 1;
+
+void printStack();
 
 
-void Input(Inform* temp, char* str, int N, int IndexOfInform);
-void Disp(Inform* temp, char *index, int N);
-void Change(Inform* temp, char *index, int N);
-void Delete(Inform* temp, char *index, int N);
-void ShowAll(Inform* temp, int N);
+
+bool isEmpty();
+bool isFull();
+int insert(int pos, int value);
+int pop(int index);
+void append(int item);
